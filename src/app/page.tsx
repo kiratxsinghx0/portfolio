@@ -3,10 +3,12 @@
 import { useState } from "react";
 import Image from "next/image";
 
+const PLAY_BUTTON_COLOR = "#67e8f9";
+
 const MUSIC_LINKS = [
   {
     name: "Spotify",
-    url: "https://open.spotify.com/playlist/4pjF5wH2HPAaxWh8F0ghsv?si=6d22ec04ae014b86",
+    url: "https://open.spotify.com/album/0yYF2MlziFjyTZIzysQhw7?si=Q757sokiT92eDvbQewM3mA&utm_source=copy-link&nd=1&dlsi=a5ca4c09c79b4226",
     color: "#1DB954",
     icon: (
       <svg viewBox="0 0 24 24" className="w-8 h-8" fill="#1DB954">
@@ -16,17 +18,25 @@ const MUSIC_LINKS = [
   },
   {
     name: "Apple Music",
-    url: "https://music.apple.com/us/artist/sup-buddie/1745095574",
+    url: "https://music.apple.com/in/album/up-up/6777663150",
     color: "#FC3C44",
     icon: (
-      <svg viewBox="0 0 24 24" className="w-8 h-8" fill="#FC3C44">
-        <path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043A5.022 5.022 0 0019.4.17C18.71.054 18.013.008 17.316 0H6.684c-.436.007-.872.025-1.306.07A5.29 5.29 0 003.13.693C2.253 1.19 1.558 1.882 1.08 2.752a4.898 4.898 0 00-.456 1.373c-.12.483-.192.978-.217 1.477C.39 5.89.383 6.179.38 6.468L.375 7.294v9.412l.005.888c.003.283.01.567.027.85.025.5.097.995.218 1.478.135.53.34 1.033.612 1.5.486.836 1.146 1.502 1.97 1.989a5.153 5.153 0 002.194.74c.442.056.888.083 1.334.094.4.01.8.012 1.2.012h10.123l.836-.005c.334-.003.668-.01 1.001-.033a5.474 5.474 0 001.805-.453c.907-.393 1.65-.978 2.228-1.77a4.914 4.914 0 00.658-1.467c.121-.485.193-.981.218-1.482.017-.282.024-.565.027-.85l.002-.453V7.294l-.003-.87a31.14 31.14 0 00-.008-.3zM17.495 17.5a.606.606 0 01-.058.226.674.674 0 01-.335.293 1.486 1.486 0 01-.456.105c-.326.03-.654.012-.98-.036a2.963 2.963 0 01-.88-.304c-.388-.207-.673-.51-.836-.922a1.63 1.63 0 01-.098-.576c.005-.194.05-.383.132-.558a1.52 1.52 0 01.588-.64c.256-.161.539-.26.834-.32.199-.04.4-.064.603-.083.166-.016.331-.033.494-.058.116-.018.228-.048.334-.1a.403.403 0 00.2-.242.597.597 0 00.017-.211.567.567 0 00-.194-.408.894.894 0 00-.357-.173c-.237-.06-.479-.07-.72-.044a1.085 1.085 0 00-.616.247.649.649 0 00-.2.363h-.987c.016-.256.09-.5.219-.717a1.675 1.675 0 01.62-.566 2.67 2.67 0 011.322-.377c.321-.01.642.018.957.084.247.054.482.148.696.284.197.131.358.307.469.516.113.224.166.471.155.722v2.843zm-7.98-5.685V8.277l5.486-1.584v7.17l-.013.474a2.002 2.002 0 01-.198.755c-.186.37-.485.622-.864.774a2.57 2.57 0 01-.682.175c-.35.04-.7.023-1.048-.03a2.222 2.222 0 01-.65-.212c-.534-.276-.832-.714-.874-1.313a1.534 1.534 0 01.178-.826c.16-.295.407-.516.704-.672.242-.126.502-.204.77-.253.194-.036.39-.06.586-.082.167-.02.334-.036.498-.063.13-.022.258-.056.38-.113a.43.43 0 00.222-.286.6.6 0 00.008-.18.5.5 0 00-.18-.372.725.725 0 00-.27-.144c-.252-.07-.51-.08-.768-.05a.954.954 0 00-.533.208.625.625 0 00-.194.357H9.515z" />
+      <svg viewBox="0 0 361 361" className="w-8 h-8">
+        <linearGradient id="apple-music-gradient" x1="180.5" y1="1" x2="180.5" y2="359.5" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#FA5F6B" />
+          <stop offset="1" stopColor="#FC3C44" />
+        </linearGradient>
+        <rect width="361" height="361" rx="80" fill="url(#apple-music-gradient)" />
+        <path
+          fill="#fff"
+          d="M254.5 88.2c-3.3-8-9.8-14.5-17.9-17.7-6.8-2.7-14.2-3.8-24.8-4.3-11-.5-14.5-.6-42.5-.6s-31.5.1-42.5.6c-10.6.5-18 1.6-24.8 4.3-8.1 3.2-14.6 8.7-17.9 17.7-2.8 7.6-3.9 15.9-4.4 27.2-.5 11.6-.6 15.4-.6 45.1s.1 33.5.6 45.1c.5 11.3 1.6 19.6 4.4 27.2 3.3 8 9.8 14.5 17.9 17.7 6.8 2.7 14.2 3.8 24.8 4.3 11 .5 14.5.6 42.5.6s31.5-.1 42.5-.6c10.6-.5 18-1.6 24.8-4.3 8.1-3.2 14.6-8.7 17.9-17.7 2.8-7.6 3.9-15.9 4.4-27.2.5-11.6.6-15.4.6-45.1s-.1-33.5-.6-45.1c-.5-11.3-1.6-19.6-4.4-27.2zM224 132.5v56.9c0 6.9-3.9 12.4-10.4 14.6l-14.6 4.7c-11.2 3.6-20.5-3.3-20.5-14.4 0-9.5 6.4-16.8 15.6-19.6l14.7-4.7v-46l-51.6 15v70.4c0 6.9-3.9 12.4-10.4 14.6l-14.6 4.7c-11.2 3.6-20.5-3.3-20.5-14.4 0-9.5 6.4-16.8 15.6-19.6l14.7-4.7v-77.2c0-4.9 3-8.9 7.6-10.3l63.9-19.9c6.3-2 10.1 1.2 10.1 7.9v42z"
+        />
       </svg>
     ),
   },
   {
     name: "YouTube",
-    url: "https://www.youtube.com/@supbuddie",
+    url: "https://music.youtube.com/playlist?list=OLAK5uy_kedVKn1UJm0KMbyfMt6IpFdkaCYsx5BI4",
     color: "#FF0000",
     icon: (
       <svg viewBox="0 0 24 24" className="w-8 h-8" fill="#FF0000">
@@ -54,19 +64,19 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="relative w-full h-screen overflow-hidden bg-[#0a1a1f]">
         {/* Navigation */}
-        <nav className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 md:px-12 py-6">
+        <nav className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between gap-2 px-4 sm:px-6 md:px-12 py-4 sm:py-6">
           <h1
-            className="text-white text-2xl md:text-3xl tracking-[0.3em] font-black uppercase"
+            className="text-white text-base sm:text-2xl md:text-3xl tracking-[0.15em] sm:tracking-[0.3em] font-black uppercase whitespace-nowrap"
             style={{ fontFamily: "Arial Black, sans-serif" }}
           >
             SUP BUDDIE
           </h1>
-          <div className="flex gap-3">
+          <div className="flex gap-1.5 sm:gap-3 shrink-0">
             <a
               href="https://www.instagram.com/supbuddi3/"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-white/70 text-white px-5 py-2 text-sm font-bold tracking-wider uppercase hover:bg-white hover:text-black transition-all duration-300 rounded-sm"
+              className="border-2 border-white/70 text-white px-2.5 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-bold tracking-wider uppercase hover:bg-white hover:text-black transition-all duration-300 rounded-sm whitespace-nowrap"
             >
               Follow
             </a>
@@ -74,7 +84,7 @@ export default function Home() {
               href="https://www.youtube.com/@supbuddie"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-white/70 text-white px-5 py-2 text-sm font-bold tracking-wider uppercase hover:bg-white hover:text-black transition-all duration-300 rounded-sm"
+              className="border-2 border-white/70 text-white px-2.5 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-bold tracking-wider uppercase hover:bg-white hover:text-black transition-all duration-300 rounded-sm whitespace-nowrap"
             >
               Subscribe
             </a>
@@ -192,19 +202,19 @@ export default function Home() {
                     <span
                       className="text-sm font-semibold rounded-lg px-5 py-1.5 transition-all duration-200 border"
                       style={{
-                        color: link.color,
-                        borderColor: `${link.color}44`,
-                        backgroundColor: `${link.color}11`,
+                        color: PLAY_BUTTON_COLOR,
+                        borderColor: `${PLAY_BUTTON_COLOR}44`,
+                        backgroundColor: `${PLAY_BUTTON_COLOR}11`,
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = link.color;
-                        e.currentTarget.style.color = "#fff";
-                        e.currentTarget.style.borderColor = link.color;
+                        e.currentTarget.style.backgroundColor = PLAY_BUTTON_COLOR;
+                        e.currentTarget.style.color = "#0a1a1f";
+                        e.currentTarget.style.borderColor = PLAY_BUTTON_COLOR;
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = `${link.color}11`;
-                        e.currentTarget.style.color = link.color;
-                        e.currentTarget.style.borderColor = `${link.color}44`;
+                        e.currentTarget.style.backgroundColor = `${PLAY_BUTTON_COLOR}11`;
+                        e.currentTarget.style.color = PLAY_BUTTON_COLOR;
+                        e.currentTarget.style.borderColor = `${PLAY_BUTTON_COLOR}44`;
                       }}
                     >
                       Play
